@@ -18,18 +18,14 @@ import {
 } from './types/BaseRegistrar/BaseRegistrar'
 
 import {
-  NameRegistered as ControllerNameRegisteredEventOld
-} from './types/EthRegistrarControllerOld/EthRegistrarControllerOld'
-
-import {
   NameRegistered as ControllerNameRegisteredEvent,
   NameRenewed as ControllerNameRenewedEvent
-} from './types/EthRegistrarController/EthRegistrarController'
+} from './types/RegistrarController/RegistrarController'
 
 // Import entity types generated from the GraphQL schema
 import { Account, Domain, NameRegistered, NameRenewed, NameTransferred, Registration } from './types/schema'
 
-var rootNode:ByteArray = byteArrayFromHex("93cdeb708b7545dc668eb9280176169d1c33cfd8ed6f04690a0bcc88a93fc4ae")
+var rootNode:ByteArray = byteArrayFromHex("78f6b1389af563cc5c91f234ea46b055e49658d8b999eeb9e0baef7dbbc93fdb")
 
 export function handleNameRegistered(event: NameRegisteredEvent): void {
   let account = new Account(event.params.owner.toHex())
@@ -47,7 +43,7 @@ export function handleNameRegistered(event: NameRegisteredEvent): void {
   let labelName = ens.nameByHash(label.toHexString())
   if (labelName != null) {
     domain.labelName = labelName
-    domain.name = labelName + '.eth'
+    domain.name = labelName + '.fil'
     registration.labelName = labelName
   }
   domain.save()
@@ -60,10 +56,6 @@ export function handleNameRegistered(event: NameRegisteredEvent): void {
   registrationEvent.registrant = account.id
   registrationEvent.expiryDate = event.params.expires
   registrationEvent.save()
-}
-
-export function handleNameRegisteredByControllerOld(event: ControllerNameRegisteredEventOld): void {
-  setNamePreimage(event.params.name, event.params.label, event.params.cost);
 }
 
 export function handleNameRegisteredByController(event: ControllerNameRegisteredEvent): void {
@@ -97,7 +89,7 @@ function setNamePreimage(name: string, label: Bytes, cost: BigInt): void {
   let domain = Domain.load(crypto.keccak256(concat(rootNode, label)).toHex())!
   if(domain.labelName !== name) {
     domain.labelName = name
-    domain.name = name + '.eth'
+    domain.name = name + '.fil'
     domain.save()
   }
 

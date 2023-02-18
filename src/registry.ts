@@ -15,7 +15,7 @@ import {
   Transfer as TransferEvent,
   NewResolver as NewResolverEvent,
   NewTTL as NewTTLEvent
-} from './types/ENSRegistry/EnsRegistry'
+} from './types/Registry/Registry'
 
 // Import entity types generated from the GraphQL schema
 import { Account, Domain, Resolver, NewOwner, Transfer, NewResolver, NewTTL } from './types/schema'

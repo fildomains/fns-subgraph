@@ -1,6 +1,6 @@
 type Domain @entity {
   id: ID!                                               # The namehash of the name
-  name: String                                          # The human readable name, if known. Unknown portions replaced with hash in square brackets (eg, foo.[1234].eth)
+  name: String                                          # The human readable name, if known. Unknown portions replaced with hash in square brackets (eg, foo.[1234].fil)
   labelName: String                                     # The human readable label name (imported from CSV), if known
   labelhash: Bytes                                      # keccak256(labelName)
   parent: Domain                                        # The namehash (id) of the parent name
@@ -91,7 +91,6 @@ type FusesSet implements DomainEvent @entity {
   blockNumber: Int!
   transactionID: Bytes!
   fuses: BigInt!
-  expiry: BigInt!
 }
 
 type Registration @entity {
@@ -237,16 +236,6 @@ type InterfaceChanged implements ResolverEvent @entity {
   transactionID: Bytes!
   interfaceID: Bytes!
   implementer: Bytes!
-}
-
-type AuthorisationChanged implements ResolverEvent @entity {
-  id: ID!
-  resolver: Resolver!
-  blockNumber: Int!
-  transactionID: Bytes!
-  owner: Bytes!
-  target: Bytes!
-  isAuthorized: Boolean!
 }
 
 type VersionChanged implements ResolverEvent @entity {

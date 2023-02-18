@@ -8,13 +8,11 @@ import {
   ABIChanged as ABIChangedEvent,
   AddrChanged as AddrChangedEvent,
   AddressChanged as AddressChangedEvent,
-  AuthorisationChanged as AuthorisationChangedEvent,
   ContenthashChanged as ContenthashChangedEvent,
   InterfaceChanged as InterfaceChangedEvent,
   NameChanged as NameChangedEvent,
   PubkeyChanged as PubkeyChangedEvent,
   TextChanged as TextChangedEvent,
-  TextChanged1 as TextChangedWithValueEvent,
   VersionChanged as VersionChangedEvent,
 } from "./types/Resolver/Resolver";
 
@@ -22,7 +20,6 @@ import {
   AbiChanged,
   Account,
   AddrChanged,
-  AuthorisationChanged,
   ContenthashChanged,
   Domain,
   InterfaceChanged,
@@ -137,7 +134,7 @@ export function handleTextChanged(event: TextChangedEvent): void {
   resolverEvent.save()
 }
 
-export function handleTextChangedWithValue(event: TextChangedWithValueEvent): void {
+export function handleTextChangedWithValue(event: TextChangedEvent): void {
   let resolver = getOrCreateResolver(event.params.node, event.address)
 
   let key = event.params.key;
@@ -182,17 +179,6 @@ export function handleInterfaceChanged(event: InterfaceChangedEvent): void {
   resolverEvent.transactionID = event.transaction.hash
   resolverEvent.interfaceID = event.params.interfaceID
   resolverEvent.implementer = event.params.implementer
-  resolverEvent.save()
-}
-
-export function handleAuthorisationChanged(event: AuthorisationChangedEvent): void {
-  let resolverEvent = new AuthorisationChanged(createEventID(event))
-  resolverEvent.blockNumber = event.block.number.toI32()
-  resolverEvent.transactionID = event.transaction.hash
-  resolverEvent.resolver = createResolverID(event.params.node, event.address)
-  resolverEvent.owner = event.params.owner
-  resolverEvent.target = event.params.target
-  resolverEvent.isAuthorized = event.params.isAuthorised
   resolverEvent.save()
 }
 

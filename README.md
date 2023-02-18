@@ -1,6 +1,33 @@
-# ENS Subgraph
+# Ipfs
 
-This Subgraph sources events from the ENS contracts. This includes the ENS registry, the Auction Registrar, and any resolvers that are created and linked to domains. The resolvers are added through dynamic data sources. More information on all of this can be found at [The Graph Documentation](https://thegraph.com/docs/developer/quick-start/).
+    install ipfs
+
+# postgresql
+
+    install postgresql
+    create a database named: graphnode
+
+# FNS graph node
+
+    git clone --branch Branch_v0.25.0 https://github.com/graphprotocol/graph-node.git
+    cd graph-node
+    cargo build
+    cd target/debug/
+    ./graph-node  --postgres-url postgresql://postgres:postgres@localhost:5432/graphnode --ethereum-rpc ibc:http://localhost:8545  --ipfs localhost:5001
+
+This Subgraph sources events from the FNS contracts. This includes the FNS registry, the Auction Registrar, and any resolvers that are created and linked to domains. The resolvers are added through dynamic data sources. More information on all of this can be found at [The Graph Documentation](https://thegraph.com/docs/developer/quick-start/).
+
+# branchs and networks
+
+    network             branch
+    filecoin            filecoin
+    hyperspace          hyperspace
+    hardhat             hardhat
+
+# hardhat network test setup
+
+    git clone --branch hardhat https://github.com/fnsdomains/fns-subgraph
+    yarn setup
 
 # Example Queries
 

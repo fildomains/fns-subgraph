@@ -93,12 +93,10 @@ export function handleNameUnwrapped(event: NameUnwrappedEvent): void {
 export function handleFusesSet(event: FusesSetEvent): void {
   let node = event.params.node
   let fuses = event.params.fuses
-  let expiry = event.params.expiry
   let blockNumber = event.block.number.toI32()
   let transactionID = event.transaction.hash
   let wrappedDomain = WrappedDomain.load(node.toHex())!
   wrappedDomain.fuses = fuses
-  wrappedDomain.expiryDate = expiry
   wrappedDomain.save()
   let fusesBurnedEvent = new FusesSet(createEventID(event))  
   fusesBurnedEvent.domain = node.toHex()

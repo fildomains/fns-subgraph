@@ -5,18 +5,18 @@ import {
   newMockEvent,
   test,
 } from "matchstick-as/assembly/index";
-import { handleNewOwner } from "../src/ensRegistry";
+import { handleNewOwner } from "../src/registry";
 import {
   handleNameRegistered,
   handleNameRegisteredByController,
-} from "../src/ethRegistrar";
+} from "../src/registrar";
 import { NameRegistered } from "../src/types/BaseRegistrar/BaseRegistrar";
-import { NewOwner } from "../src/types/ENSRegistry/EnsRegistry";
-import { NameRegistered as NameRegisteredByController } from "../src/types/EthRegistrarController/EthRegistrarController";
+import { NewOwner } from "../src/types/Registry/Registry";
+import { NameRegistered as NameRegisteredByController } from "../src/types/RegistrarController/RegistrarController";
 import { Registration } from "../src/types/schema";
 
-const ETH_NAMEHASH =
-  "0x93cdeb708b7545dc668eb9280176169d1c33cfd8ed6f04690a0bcc88a93fc4ae";
+const FIL_NAMEHASH =
+  "0x78f6b1389af563cc5c91f234ea46b055e49658d8b999eeb9e0baef7dbbc93fdb";
 
 const DEFAULT_OWNER = "0x89205A3A3b2A69De6Dbf7f01ED13B2108B2c43e7";
 
@@ -163,7 +163,7 @@ const checkNullLabelName = (
   label: string
 ): void => {
   const newNewOwnerEvent = createNewOwnerEvent(
-    ETH_NAMEHASH,
+    FIL_NAMEHASH,
     labelhash,
     DEFAULT_OWNER
   );
