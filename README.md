@@ -1,21 +1,28 @@
-# Ipfs
-
-    install ipfs
-
-# postgresql
-
-    install postgresql
-    create a database named: graphnode
-
 # FNS graph node
+    https://github.com/graphprotocol/graph-nod    
 
+This Subgraph sources events from the FNS contracts. This includes the FNS registry, the Auction Registrar, and any resolvers that are created and linked to domains. The resolvers are added through dynamic data sources. More information on all of this can be found at [The Graph Documentation](https://thegraph.com/docs/developer/quick-start/).
+
+# hardhat network test setup
+    Create the postgresql database named: graphnode
+
+    Compile and run graphnode:
     git clone --branch Branch_v0.25.0 https://github.com/graphprotocol/graph-node.git
     cd graph-node
     cargo build
     cd target/debug/
-    ./graph-node  --postgres-url postgresql://postgres:postgres@localhost:5432/graphnode --ethereum-rpc ibc:http://localhost:8545  --ipfs localhost:5001
+    ./graph-node  --postgres-url postgresql://postgres:postgres@localhost:5432/graphnode --ethereum-rpc hardhat:http://localhost:8545  --ipfs localhost:5001
 
-This Subgraph sources events from the FNS contracts. This includes the FNS registry, the Auction Registrar, and any resolvers that are created and linked to domains. The resolvers are added through dynamic data sources. More information on all of this can be found at [The Graph Documentation](https://thegraph.com/docs/developer/quick-start/).
+    run hardhat node:
+    git clone https://github.com/fildomains/fns-contracts
+    cd fns-contracts
+    yarn
+    yanr run node
+
+    git clone --branch hardhat https://github.com/fnsdomains/fns-subgraph
+    cd fns-subgraph
+    yarn
+    yarn setup
 
 # branchs and networks
 
@@ -23,11 +30,6 @@ This Subgraph sources events from the FNS contracts. This includes the FNS regis
     filecoin            filecoin
     hyperspace          hyperspace
     hardhat             hardhat
-
-# hardhat network test setup
-
-    git clone --branch hardhat https://github.com/fnsdomains/fns-subgraph
-    yarn setup
 
 # Example Queries
 
