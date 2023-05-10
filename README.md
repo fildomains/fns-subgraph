@@ -27,8 +27,6 @@ This Subgraph sources events from the FNS contracts. This includes the FNS regis
 # branchs and networks
 
     network             branch
-    filecoin            filecoin
-    hyperspace          hyperspace
     hardhat             hardhat
 
 # Example Queries
