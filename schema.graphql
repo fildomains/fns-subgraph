@@ -71,10 +71,10 @@ type NameWrapped implements DomainEvent @entity {
   domain: Domain!
   blockNumber: Int!
   transactionID: Bytes!
-  name: String!
-  fuses: BigInt!
+  name: String
+  fuses: Int!
   owner: Account!
-  expiry: BigInt!
+  expiryDate: BigInt!
 }
 
 type NameUnwrapped implements DomainEvent @entity {
@@ -90,7 +90,15 @@ type FusesSet implements DomainEvent @entity {
   domain: Domain!
   blockNumber: Int!
   transactionID: Bytes!
-  fuses: BigInt!
+  fuses: Int!
+}
+
+type ExpiryExtended implements DomainEvent @entity {
+  id: ID!
+  domain: Domain!
+  blockNumber: Int!
+  transactionID: Bytes!
+  expiryDate: BigInt!
 }
 
 type Registration @entity {
@@ -140,9 +148,9 @@ type WrappedDomain @entity {
   id: ID!
   domain: Domain!
   expiryDate: BigInt!
-  fuses: BigInt!
+  fuses: Int!
   owner: Account!
-  labelName: String
+  name: String
 }
 
 type Account @entity {
@@ -236,6 +244,16 @@ type InterfaceChanged implements ResolverEvent @entity {
   transactionID: Bytes!
   interfaceID: Bytes!
   implementer: Bytes!
+}
+
+type AuthorisationChanged implements ResolverEvent @entity {
+  id: ID!
+  resolver: Resolver!
+  blockNumber: Int!
+  transactionID: Bytes!
+  owner: Bytes!
+  target: Bytes!
+  isAuthorized: Boolean!
 }
 
 type VersionChanged implements ResolverEvent @entity {

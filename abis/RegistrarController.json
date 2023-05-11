@@ -30,6 +30,11 @@
         "internalType": "contract INameWrapper",
         "name": "_nameWrapper",
         "type": "address"
+      },
+      {
+        "internalType": "address payable",
+        "name": "_fnsToken",
+        "type": "address"
       }
     ],
     "stateMutability": "nonpayable",
